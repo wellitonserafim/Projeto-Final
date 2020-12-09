@@ -16,9 +16,14 @@ export default class FormPokemon extends React.Component{
     }
 
     setDiscografia = () => {
-        this.props.save(this.state)
+        if(this.props.selecionado){
+            this.props.put(this.state)
+        }else{
+            this.props.save(this.state)
+        }
+
         this.setState({
-            "nome":"",
+            "nome": "",
             "ano": 0
         })
     }

@@ -11,7 +11,8 @@ export default class Discografia extends React.Component{
         this.API_ENDPOINT = "http://localhost:8080/album"
 
         this.state = {
-            "discografia": []
+            "discografia": [],
+            "selecionado": null
         }
     }
 
@@ -48,15 +49,39 @@ export default class Discografia extends React.Component{
         })
     }
 
+    putDiscografia = (discografia) => {
+        var requisicao = Axios.put(this.API_ENDPOINT + "/" + this.state.selecionado._id, discografia)
+        requisicao.then((resposta) => {
+            if(resposta.status === 200){
+                this.getAllDiscografia()
+            }
+        })
+    }
 
+    selectDiscografia = (discografia) => {
+        if(this.state.selecionado == discografia){
+            this.setState({
+                "selecionado": null
+            })
+        } else {
+            this.setState({
+                "selecionado": discografia
+            })
+        }
+    }
 
     render(){
+        var selecionado = this.state.selecionado ? this.state.selecionado._id : null
         return(
             <main>
             <section>
                 <h2>Formulario</h2>
+                {selecionado}
                 <FormDiscografia 
-                save={this.SaveDiscografia}>
+                save={this.SaveDiscografia}
+                put={this.putDiscografia}
+                selecionado={this.state.selecionado}
+                key={selecionado}>
                 </FormDiscografia>
             </section>
             <section>
@@ -64,6 +89,7 @@ export default class Discografia extends React.Component{
                 <ListaDiscografia 
                 discografia={this.state.discografia}
                 delete={this.deleteDiscografia}
+                select={this.selectDiscografia}
                 ></ListaDiscografia>
             </section>
         </main>
