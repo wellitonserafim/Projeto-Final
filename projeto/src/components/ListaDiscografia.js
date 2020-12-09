@@ -1,0 +1,29 @@
+import React from 'react'
+
+export default class ListaDiscografia extends React.Component{
+
+    render(){
+        var lista = this.props.discografia
+        lista = lista.map((item) =>{
+            return <li key={item._id}>
+            <div>
+            {item.nome}
+            </div>
+            <div>
+            {item.genero}
+            </div>
+            <div>
+            {item.ano}
+            </div>
+            <div>
+            {item.gravadora}
+            </div>
+            </li>
+        })
+        return(
+            <ul>
+                {lista}
+            </ul>
+        )
+    }
+}
