@@ -39,6 +39,17 @@ export default class Discografia extends React.Component{
         })
     }
 
+    deleteDiscografia = (discografiaId) => {
+        var requisicao = Axios.delete(this.API_ENDPOINT + "/" + discografiaId)
+        requisicao.then((resposta) => {
+            if(resposta.status === 200){
+                this.getAllDiscografia()
+            }
+        })
+    }
+
+
+
     render(){
         return(
             <main>
@@ -50,7 +61,10 @@ export default class Discografia extends React.Component{
             </section>
             <section>
                 <h2>Lista</h2>
-                <ListaDiscografia discografia={this.state.discografia}></ListaDiscografia>
+                <ListaDiscografia 
+                discografia={this.state.discografia}
+                delete={this.deleteDiscografia}
+                ></ListaDiscografia>
             </section>
         </main>
         )

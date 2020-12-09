@@ -6,18 +6,11 @@ export default class ListaDiscografia extends React.Component{
         var lista = this.props.discografia
         lista = lista.map((item) =>{
             return <li key={item._id}>
-            <div>
-            {item.nome}
-            </div>
-            <div>
-            {item.genero}
-            </div>
-            <div>
-            {item.ano}
-            </div>
-            <div>
-            {item.gravadora}
-            </div>
+            <div>{item.nome}</div>
+            <div>{item.genero}</div>
+            <div>{item.ano}</div>
+            <div>{item.gravadora}</div>
+            <div> <button onClick={() => this.props.delete(item._id)}>Deletar</button></div>
             </li>
         })
         return(
