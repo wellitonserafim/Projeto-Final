@@ -1,5 +1,6 @@
 import React from 'react'
-import { Button } from '@material-ui/core'
+import { TextField, Button, Grid  } from '@material-ui/core'
+import '../../index.css'
 
 export default class FormAlbum extends React.Component{
 
@@ -34,20 +35,22 @@ export default class FormAlbum extends React.Component{
         })
     }
 
-render(){
-    return(
-        <form>
-        <input type="text" id="nome" value={this.state.nome} onChange={this.handleInput}></input>
-        <input type="text" id="genero" value={this.state.genero} onChange={this.handleInput}></input>
-        <input type="number" id="ano" value={this.state.ano} onChange={this.handleInput}></input>
-        <input type="text" id="gravadora" value={this.state.gravadora} onChange={this.handleInput}></input>   
-        <Button
-        variant="contained"
-        color="primary"
-        type="button" 
-        onClick={this.setAlbum}>Inserir
+    render() {
+        return (
+            <form>
+                <Grid container spacing={1} class="edit-album">
+                    <TextField label="Nome" variant="filled" type="text" id="nome" value={this.state.nome} onChange={this.handleInput}> </TextField>
+                    <TextField label="Gênero" variant="filled" type="text" id="genero" value={this.state.genero} onChange={this.handleInput}> </TextField>
+                    <TextField label="Ano" variant="filled" input type="number" id="ano" value={this.state.ano} onChange={this.handleInput}></TextField>
+                    <TextField label="Gravadora" variant="filled" input type="text" id="gravadora" value={this.state.gravadora} onChange={this.handleInput}></TextField>
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        type="button"
+                        onClick={this.setAlbum}>Inserir
         </Button>
-    </form>
-    )
-}
+                </Grid>
+            </form>
+        )
+    }
 }

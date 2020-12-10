@@ -2,6 +2,7 @@ import React from 'react'
 import FormMusica from '../Forms/FormMusica'
 import ListaDiscografia from '../Listagem/ListaDiscografia'
 import Axios from 'axios'
+import { Grid } from '@material-ui/core'
 
 export default class Musica extends React.Component{
 
@@ -70,29 +71,33 @@ export default class Musica extends React.Component{
         }
     }
 
-    render(){
+    render() {
         var selecionado = this.state.selecionado ? this.state.selecionado._id : null
-        return(
+        return (
+
             <main>
-            <section>
-                <h2>Música</h2>
-                {selecionado}
-                <FormMusica 
-                save={this.SaveMusica}
-                put={this.putMusica}
-                selecionado={this.state.selecionado}
-                key={selecionado}>
-                </FormMusica>
-            </section>
-            <section>
-                <h2>Lista de Música</h2>
-                <ListaDiscografia 
-                dados={this.state.musica}
-                delete={this.deleteMusica}
-                select={this.selectMusica}
-                ></ListaDiscografia>
-            </section>
-        </main>
+                <Grid>
+                    <section>
+                        <h2>Música</h2>
+                        {selecionado}
+                        <FormMusica
+                            save={this.SaveMusica}
+                            put={this.putMusica}
+                            selecionado={this.state.selecionado}
+                            key={selecionado}>
+                        </FormMusica>
+                    </section>
+                    <section>
+                        <h2>Lista de Música</h2>
+                        <ListaDiscografia
+                            dados={this.state.musica}
+                            delete={this.deleteMusica}
+                            select={this.selectMusica}
+                        ></ListaDiscografia>
+                    </section>
+                </Grid>
+            </main>
+
         )
     }
 }

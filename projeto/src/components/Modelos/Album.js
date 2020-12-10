@@ -2,7 +2,7 @@ import React from 'react'
 import FormAlbum from '../Forms/FormAlbum'
 import ListaDiscografia from '../Listagem/ListaDiscografia'
 import Axios from 'axios'
-
+import { Grid } from '@material-ui/core'
 export default class Album extends React.Component{
 
     constructor(props){
@@ -68,31 +68,33 @@ export default class Album extends React.Component{
                 "selecionado": album
             })
         }
-    }
+    }    
 
-    render(){
+    render() {
         var selecionado = this.state.selecionado ? this.state.selecionado._id : null
-        return(
+        return (
             <main>
-            <section>
-                <h2>Album</h2>
-                {selecionado}
-                <FormAlbum 
-                save={this.SaveAlbum}
-                put={this.putAlbum}
-                selecionado={this.state.selecionado}
-                key={selecionado}>
-                </FormAlbum>
-            </section>
-            <section>
-                <h2>Lista de Album</h2>
-                <ListaDiscografia 
-                dados={this.state.album}
-                delete={this.deleteAlbum}
-                select={this.selectAlbum}
-                ></ListaDiscografia>
-            </section>
-        </main>
+                <Grid>
+                    <section>
+                        <h2>Album</h2>
+                        {selecionado}
+                        <FormAlbum
+                            save={this.SaveAlbum}
+                            put={this.putAlbum}
+                            selecionado={this.state.selecionado}
+                            key={selecionado}>
+                        </FormAlbum>
+                    </section>
+                    <section>
+                        <h2>Lista de Album</h2>                      
+                        <ListaDiscografia
+                            dados={this.state.album}
+                            delete={this.deleteAlbum}
+                            select={this.selectAlbum}
+                        ></ListaDiscografia>
+                    </section>
+                </Grid>
+            </main>
         )
     }
 }

@@ -1,5 +1,6 @@
 import React from 'react'
-import { Button } from '@material-ui/core'
+import { TextField, Button, Grid  } from '@material-ui/core'
+import '../../index.css'
 
 export default class FormCompositor extends React.Component{
 
@@ -33,20 +34,23 @@ export default class FormCompositor extends React.Component{
         })
     }
 
-render(){
-    return(
-        <form>
-        <input type="text" id="nome" value={this.state.nome} onChange={this.handleInput}></input>
-        <input type="text" id="nome_completo" value={this.state.nome_completo} onChange={this.handleInput}></input>
-        <input type="text" id="nacionalidade" value={this.state.nacionalidade} onChange={this.handleInput}></input>   
+    render() {
+        return (
+            <form>
+                <Grid container spacing={1} class="edit-album">
+                    
+                    <TextField label="Nome" variant="filled" type="text" id="nome" value={this.state.nome} onChange={this.handleInput}></TextField>
+                    <TextField label="Nome Completo" variant="filled" type="text" id="nome_completo" value={this.state.nome_completo} onChange={this.handleInput}></TextField>
+                    <TextField label="Nacionalidade" variant="filled" type="text" id="nacionalidade" value={this.state.nacionalidade} onChange={this.handleInput}></TextField>
 
-        <Button
-        variant="contained"
-        color="primary"
-        type="button" 
-        onClick={this.setCompositor}>Inserir
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        type="button"
+                        onClick={this.setCompositor}>Inserir
         </Button>
-    </form>
-    )
-}
+                </Grid>
+            </form>
+        )
+    }
 }
