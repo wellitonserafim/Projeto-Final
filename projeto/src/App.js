@@ -1,9 +1,15 @@
 import './App.css';
-import Discografica from './components/Discografica'
+import Musica from './components/Modelos/Musica'
+import Compositor from './components/Modelos/Compositor'
+import Album from './components/Modelos/Album'
 
 function App() {
   return (
-    <Discografica></Discografica>
+    <div>
+    <Compositor></Compositor>
+    <Album></Album>
+    <Musica></Musica>
+    </div>
   );
 }
 
