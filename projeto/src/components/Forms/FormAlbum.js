@@ -47,7 +47,7 @@ export default class FormAlbum extends React.Component{
                         variant="contained"
                         color="primary"
                         type="button"
-                        onClick={this.setAlbum}>Inserir
+                        onClick={this.setAlbum}>Incluir
         </Button>
                 </Grid>
             </form>

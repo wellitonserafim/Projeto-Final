@@ -44,7 +44,7 @@ export default class FormMusica extends React.Component{
                         variant="contained"
                         color="primary"
                         type="button"
-                        onClick={this.setDiscografia}>Inserir
+                        onClick={this.setMusica}>Incluir
                      </Button>
                 </Grid>
             </form>

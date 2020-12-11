@@ -2,19 +2,23 @@ import './App.css';
 import Musica from './components/Modelos/Musica'
 import Compositor from './components/Modelos/Compositor'
 import Album from './components/Modelos/Album'
-import { Container, Paper } from '@material-ui/core'
+import { Container, Accordion, AccordionDetails, Grid, Card } from '@material-ui/core'
 
 function App() {
   return (
-    
+
     <Container maxWidth="sm">
-      <Paper elevation={3} />
-    <Compositor></Compositor>
-    <Album></Album>
-    <Musica></Musica>
-    <Paper />
+      <Card variant="outlined">
+        <Compositor></Compositor>
+      </Card>
+      <Card variant="outlined">
+        <Album></Album>
+      </Card>
+      <Card variant="outlined">
+        <Musica></Musica>
+      </Card>
     </Container>
- 
+
   );
 }
 

@@ -2,10 +2,11 @@ import React from 'react'
 import FormAlbum from '../Forms/FormAlbum'
 import ListaDiscografia from '../Listagem/ListaDiscografia'
 import Axios from 'axios'
-import { Grid } from '@material-ui/core'
-export default class Album extends React.Component{
+import { Accordion, AccordionDetails, AccordionSummary, Grid } from '@material-ui/core'
+import '../../index.css'
+export default class Album extends React.Component {
 
-    constructor(props){
+    constructor(props) {
         super(props)
 
         this.API_ENDPOINT = "http://localhost:8080/album"
@@ -23,7 +24,7 @@ export default class Album extends React.Component{
     getAllAlbum = () => {
         var requisicao = Axios.get(this.API_ENDPOINT)
         requisicao.then((resposta) => {
-            if(resposta.status === 200){
+            if (resposta.status === 200) {
                 this.setState({
                     "album": resposta.data
                 })
@@ -34,7 +35,7 @@ export default class Album extends React.Component{
     SaveAlbum = (album) => {
         var requisicao = Axios.post(this.API_ENDPOINT, album)
         requisicao.then((resposta) => {
-            if(resposta.status === 200){
+            if (resposta.status === 200) {
                 this.getAllAlbum()
             }
         })
@@ -43,7 +44,7 @@ export default class Album extends React.Component{
     deleteAlbum = (albumId) => {
         var requisicao = Axios.delete(this.API_ENDPOINT + "/" + albumId)
         requisicao.then((resposta) => {
-            if(resposta.status === 200){
+            if (resposta.status === 200) {
                 this.getAllAlbum()
             }
         })
@@ -52,14 +53,14 @@ export default class Album extends React.Component{
     putAlbum = (album) => {
         var requisicao = Axios.put(this.API_ENDPOINT + "/" + this.state.selecionado._id, album)
         requisicao.then((resposta) => {
-            if(resposta.status === 200){
+            if (resposta.status === 200) {
                 this.getAllAlbum()
             }
         })
     }
 
     selectAlbum = (album) => {
-        if(this.state.selecionado === album){
+        if (this.state.selecionado === album) {
             this.setState({
                 "selecionado": null
             })
@@ -68,32 +69,37 @@ export default class Album extends React.Component{
                 "selecionado": album
             })
         }
-    }    
+    }
 
     render() {
         var selecionado = this.state.selecionado ? this.state.selecionado._id : null
         return (
             <main>
-                <Grid>
-                    <section>
-                        <h2>Album</h2>
-                        {selecionado}
-                        <FormAlbum
-                            save={this.SaveAlbum}
-                            put={this.putAlbum}
-                            selecionado={this.state.selecionado}
-                            key={selecionado}>
-                        </FormAlbum>
-                    </section>
-                    <section>
-                        <h2>Lista de Album</h2>                      
-                        <ListaDiscografia
-                            dados={this.state.album}
-                            delete={this.deleteAlbum}
-                            select={this.selectAlbum}
-                        ></ListaDiscografia>
-                    </section>
-                </Grid>
+                <section>
+                    <h2>Album</h2>
+                    {selecionado}
+                    <FormAlbum
+                        save={this.SaveAlbum}
+                        put={this.putAlbum}
+                        selecionado={this.state.selecionado}
+                        key={selecionado}>
+                    </FormAlbum>
+                </section>
+                <section>
+
+                    <Accordion>
+                        <AccordionSummary>
+                            <h3>Lista de Album</h3>
+                        </AccordionSummary>
+                        <AccordionDetails class="edit-album">
+                                <ListaDiscografia
+                                    dados={this.state.album}
+                                    delete={this.deleteAlbum}
+                                    select={this.selectAlbum}
+                                ></ListaDiscografia>
+                        </AccordionDetails>
+                    </Accordion>
+                </section>
             </main>
         )
     }

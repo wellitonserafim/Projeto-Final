@@ -47,7 +47,7 @@ export default class FormCompositor extends React.Component{
                         variant="contained"
                         color="primary"
                         type="button"
-                        onClick={this.setCompositor}>Inserir
+                        onClick={this.setCompositor}>Incluir
         </Button>
                 </Grid>
             </form>

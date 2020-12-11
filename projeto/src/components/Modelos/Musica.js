@@ -2,7 +2,8 @@ import React from 'react'
 import FormMusica from '../Forms/FormMusica'
 import ListaDiscografia from '../Listagem/ListaDiscografia'
 import Axios from 'axios'
-import { Grid } from '@material-ui/core'
+import { Accordion, AccordionDetails, AccordionSummary, Grid } from '@material-ui/core'
+import '../../index.css'
 
 export default class Musica extends React.Component{
 
@@ -88,12 +89,18 @@ export default class Musica extends React.Component{
                         </FormMusica>
                     </section>
                     <section>
-                        <h2>Lista de Música</h2>
+                    <Accordion>
+                    <AccordionSummary>
+                        <h3>Lista de Música</h3>
+                        </AccordionSummary>
+                        <AccordionDetails class="edit-album">
                         <ListaDiscografia
                             dados={this.state.musica}
                             delete={this.deleteMusica}
                             select={this.selectMusica}
                         ></ListaDiscografia>
+                        </AccordionDetails>
+                        </Accordion>
                     </section>
                 </Grid>
             </main>
